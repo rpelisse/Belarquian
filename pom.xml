@@ -65,16 +65,16 @@
   </dependencies>
   <profiles>
     <profile>
-        <id>arquillian-weld-ee-embedded</id>
-        <dependencies>
-	    <dependency>
-	      <groupId>org.jboss.spec</groupId>
-	      <artifactId>jboss-javaee-6.0</artifactId>
-	      <type>pom</type>
-	      <scope>provided</scope>
-	    </dependency>
+      <id>arquillian-weld-ee-embedded</id>
+      <dependencies>
+        <dependency>
+        <groupId>org.jboss.spec</groupId>
+	<artifactId>jboss-javaee-6.0</artifactId>
+	<type>pom</type>
+	<scope>provided</scope>
+      </dependency>
       <dependency>
-       <groupId>org.jboss.arquillian.container</groupId>
+        <groupId>org.jboss.arquillian.container</groupId>
         <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
         <version>1.0.0.CR8</version>
         <scope>test</scope>
@@ -101,7 +101,6 @@
       </dependencies>
     </profile>
   </profiles>
-
 
   <build>
     <finalName>Belarquian</finalName>
