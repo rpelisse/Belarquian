@@ -17,7 +17,7 @@ public class ToDoServiceTest {
 	
 	@Deployment
 	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class).addClass(TodoService.class)
+		return ShrinkWrap.create(JavaArchive.class).addClass(TodoService.class).addClass(ToDoStorageInfinispan.class)
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 
@@ -29,5 +29,5 @@ public class ToDoServiceTest {
 		todoService.addToDo(new ToDoItem(1L, "first item"));
 		assertEquals(1, todoService.getTodos().size());
 	}
-
+	
 }
