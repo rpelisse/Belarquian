@@ -4,9 +4,20 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 public class TodoService {
 
+	@Inject
+	private ToDoStorageInfinispan storage;
+	
 	private List<ToDoItem> todos = new ArrayList<>(0);
+
+	@PostConstruct
+	public void loadDatas() {
+		todos = storage.retrieve();
+	}
 	
 	public void printToDos(PrintStream to) {
 		for ( ToDoItem item : todos )
@@ -15,6 +26,7 @@ public class TodoService {
 
 	public void addToDo(ToDoItem item) {
 		todos.add(item);
+		storage.synchronize(todos);
 	}
 
 	public List<ToDoItem> getTodos() {
@@ -23,6 +35,14 @@ public class TodoService {
 
 	public void setTodos(List<ToDoItem> todos) {
 		this.todos = todos;
+	}
+
+	public ToDoStorageInfinispan getStorage() {
+		return storage;
+	}
+
+	public void setStorage(ToDoStorageInfinispan storage) {
+		this.storage = storage;
 	}
 	
 	
