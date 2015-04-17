@@ -10,6 +10,8 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <infinispan.version>7.1.0.Final</infinispan.version>
+    <infinispan-jcache.version>7.0.0.Final</infinispan-jcache.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -71,6 +73,19 @@
       <type>pom</type>
       <scope>provided</scope>
     </dependency>
+
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-embedded</artifactId>
+         <version>${infinispan.version}</version>
+     </dependency>
+
+     <dependency>
+           <groupId>org.infinispan</groupId>
+           <artifactId>infinispan-jcache</artifactId>
+           <version>${infinispan-jcache.version}</version>
+     </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
