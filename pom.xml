@@ -12,6 +12,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <infinispan.version>7.1.0.Final</infinispan.version>
     <infinispan-jcache.version>7.0.0.Final</infinispan-jcache.version>
+    <infinispan.cdi.version>7.1.0.Final</infinispan.cdi.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -45,14 +46,19 @@
   <dependencies>
     <dependency>
        <groupId>org.infinispan</groupId>
-       <artifactId>infinispan-embedded</artifactId>
+       <artifactId>infinispan-core</artifactId>
        <version>${infinispan.version}</version>
     </dependency>
     <dependency>
       <groupId>org.infinispan</groupId>
       <artifactId>infinispan-jcache</artifactId>
       <version>${infinispan-jcache.version}</version>
-   </dependency>
+    </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-cdi</artifactId>
+      <version>${infinispan.cdi.version}</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
