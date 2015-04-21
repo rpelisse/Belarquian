@@ -20,10 +20,13 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class ToDoServiceTest {
 
+	private static final String ARTEFACT_NAME = "Belarquian.war";
+	private static final String TARGET_DIR = "target";
+
 	@Deployment
 	public static WebArchive createDeployment() {
-		return ShrinkWrap.create(ZipImporter.class, "Belarquian.war.war")
-				.importFrom(new File("target/Belarquian.war"))
+		return ShrinkWrap.create(ZipImporter.class, ARTEFACT_NAME)
+				.importFrom(new File(TARGET_DIR + "/" + ARTEFACT_NAME))
 				.as(WebArchive.class);
 	}
 
