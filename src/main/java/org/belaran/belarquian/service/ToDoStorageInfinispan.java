@@ -9,9 +9,13 @@ import javax.cache.Cache;
 import javax.cache.Cache.Entry;
 import javax.cache.Caching;
 import javax.cache.configuration.MutableConfiguration;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Default;
+import javax.inject.Named;
 
 @Default
+@Named
+@ApplicationScoped
 public class ToDoStorageInfinispan {
 
 	private static final String CACHE_NAME = ToDoStorageInfinispan.class
