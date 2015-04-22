@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Random;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -51,11 +52,24 @@ public class ToDoServiceTest {
 	@RunAsClient
 	@InSequence(4)
 	public void getToDosAsHTML() throws IOException {
-		 webDriver.get(baseURL.toString() + "/app");
+		 webDriver.get(baseURL.toString() + "/list");
 		 System.out.println(webDriver.getPageSource());
 	     WebElement element = webDriver.findElement(By.xpath("//a"));
 	     assertEquals(element.getAttribute("name"),"1");
 	}
+
+	@Test
+	@RunAsClient
+	@InSequence(5)
+	public void addByHtmlForm() throws IOException {
+		 webDriver.get(baseURL.toString() + "/add");
+		 System.out.println(webDriver.getPageSource()); 
+		 webDriver.findElement(By.id("item_id")).sendKeys(String.valueOf(new Random().nextLong()));
+		 webDriver.findElement(By.id("item_label")).sendKeys("label");
+		 webDriver.findElement(By.id("item_submit")).click();
+//		 System.out.println(webDriver.getPageSource()); 
+	}
+
 	
 	@Test
 	@RunAsClient
