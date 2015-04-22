@@ -1,5 +1,7 @@
 package org.belaran.belarquian.service;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -14,8 +16,13 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 @RunWith(Arquillian.class)
 public class ToDoServiceTest {
@@ -25,6 +32,8 @@ public class ToDoServiceTest {
 
 	@ArquillianResource
 	private URL baseURL;
+	
+	private WebDriver webDriver;
 
 	@Deployment
 	public static WebArchive createDeployment() {
@@ -33,12 +42,29 @@ public class ToDoServiceTest {
 				.as(WebArchive.class);
 	}
 
+	@Before
+	public void setWebDriver() {
+		webDriver = new FirefoxDriver();
+	}
+
+	@Test
+	@RunAsClient
+	@InSequence(4)
+	public void getToDosAsHTML() throws IOException {
+		 webDriver.get(baseURL.toString() + "/app");
+		 System.out.println(webDriver.getPageSource());
+	     WebElement element = webDriver.findElement(By.xpath("//a"));
+	     assertEquals(element.getAttribute("name"),"1");
+	}
+	
 	@Test
 	@RunAsClient
 	@InSequence(1)
 	public void checkServiceStatus()
 			throws IOException {
-		printInputStream(baseURL.toString() + "rest/test");
+		 webDriver.get(baseURL.toString() + "rest/test");
+	     String element = webDriver.getPageSource();
+	     System.out.println(element);
 	}
 
 	@Test
