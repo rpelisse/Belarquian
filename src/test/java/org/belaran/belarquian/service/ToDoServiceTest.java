@@ -23,6 +23,9 @@ public class ToDoServiceTest {
 	private static final String ARTEFACT_NAME = "Belarquian.war";
 	private static final String TARGET_DIR = "target";
 
+	@ArquillianResource
+	private URL baseURL;
+
 	@Deployment
 	public static WebArchive createDeployment() {
 		return ShrinkWrap.create(ZipImporter.class, ARTEFACT_NAME)
@@ -33,7 +36,7 @@ public class ToDoServiceTest {
 	@Test
 	@RunAsClient
 	@InSequence(1)
-	public void checkServiceStatus(@ArquillianResource URL baseURL)
+	public void checkServiceStatus()
 			throws IOException {
 		printInputStream(baseURL.toString() + "rest/test");
 	}
@@ -41,7 +44,7 @@ public class ToDoServiceTest {
 	@Test
 	@RunAsClient
 	@InSequence(2)
-	public void addOneItemTest(@ArquillianResource URL baseURL)
+	public void addOneItemTest()
 			throws IOException {
 		printInputStream(baseURL.toString() + "rest/add/1/a-value");
 	}
@@ -49,7 +52,7 @@ public class ToDoServiceTest {
 	@Test
 	@RunAsClient
 	@InSequence(3)
-	public void listItems(@ArquillianResource URL baseURL)
+	public void listItems()
 			throws IOException {
 		printInputStream(baseURL.toString() + "rest/list");
 	}
