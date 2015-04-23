@@ -10,6 +10,10 @@
     </engine>
     -->
 
+    <!--extension qualifier="webdriver">
+        <property name="browser">firefox</property>
+    </extension-->
+
    <container qualifier="arquillian-wildfly-managed" default="true">
      <configuration>
        <property name="java.util.logging.manager">org.jboss.logmanager.LogManager</property>

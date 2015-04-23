@@ -11,19 +11,18 @@ import java.util.Random;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 @RunWith(Arquillian.class)
 public class ToDoServiceTest {
@@ -33,7 +32,8 @@ public class ToDoServiceTest {
 
 	@ArquillianResource
 	private URL baseURL;
-	
+
+	@Drone
 	private WebDriver webDriver;
 
 	@Deployment
@@ -41,11 +41,6 @@ public class ToDoServiceTest {
 		return ShrinkWrap.create(ZipImporter.class, ARTEFACT_NAME)
 				.importFrom(new File(TARGET_DIR + "/" + ARTEFACT_NAME))
 				.as(WebArchive.class);
-	}
-
-	@Before
-	public void setWebDriver() {
-		webDriver = new FirefoxDriver();
 	}
 
 	@Test
@@ -67,7 +62,6 @@ public class ToDoServiceTest {
 		 webDriver.findElement(By.id("item_id")).sendKeys(String.valueOf(new Random().nextLong()));
 		 webDriver.findElement(By.id("item_label")).sendKeys("label");
 		 webDriver.findElement(By.id("item_submit")).click();
-//		 System.out.println(webDriver.getPageSource()); 
 	}
 
 	
