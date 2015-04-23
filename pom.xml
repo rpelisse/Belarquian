@@ -13,6 +13,7 @@
     <infinispan.version>7.1.0.Final</infinispan.version>
     <infinispan-jcache.version>7.1.0.Final</infinispan-jcache.version>
     <infinispan.cdi.version>7.1.0.Final</infinispan.cdi.version>
+    <arquillian.version>1.1.7.Final</arquillian.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -32,14 +33,14 @@
       <dependency>
         <groupId>org.jboss.arquillian</groupId>
         <artifactId>arquillian-bom</artifactId>
-        <version>1.1.7.Final</version>
+        <version>${arquillian.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.jboss.arquillian.junit</groupId>
         <artifactId>arquillian-junit-container</artifactId>
-        <version>1.1.7.Final</version>
+        <version>${arquillian.version}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
